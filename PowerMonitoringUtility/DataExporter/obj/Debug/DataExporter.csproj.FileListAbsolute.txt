@@ -1,7 +1,0 @@
-c:\users\erik\documents\visual studio 2013\Projects\PowerMonitoringUtility\DataExporter\bin\Debug\DataExporter.dll
-c:\users\erik\documents\visual studio 2013\Projects\PowerMonitoringUtility\DataExporter\bin\Debug\DataExporter.pdb
-c:\users\erik\documents\visual studio 2013\Projects\PowerMonitoringUtility\DataExporter\obj\Debug\DataExporter.csprojResolveAssemblyReference.cache
-c:\users\erik\documents\visual studio 2013\Projects\PowerMonitoringUtility\DataExporter\obj\Debug\DataExporter.dll
-c:\users\erik\documents\visual studio 2013\Projects\PowerMonitoringUtility\DataExporter\obj\Debug\DataExporter.pdb
-c:\users\erik\documents\visual studio 2013\Projects\PowerMonitoringUtility\DataExporter\bin\Debug\TedEnergy.Web.API.dll
-c:\users\erik\documents\visual studio 2013\Projects\PowerMonitoringUtility\DataExporter\bin\Debug\TedEnergy.Web.API.pdb
