@@ -1,0 +1,5 @@
+c:\users\erik\documents\visual studio 2013\Projects\PowerMonitoringUtility\TedEnergy.Web.API\bin\Debug\TedEnergy.Web.API.dll
+c:\users\erik\documents\visual studio 2013\Projects\PowerMonitoringUtility\TedEnergy.Web.API\bin\Debug\TedEnergy.Web.API.pdb
+c:\users\erik\documents\visual studio 2013\Projects\PowerMonitoringUtility\TedEnergy.Web.API\obj\Debug\TedEnergy.Web.API.dll
+c:\users\erik\documents\visual studio 2013\Projects\PowerMonitoringUtility\TedEnergy.Web.API\obj\Debug\TedEnergy.Web.API.pdb
+c:\users\erik\documents\visual studio 2013\Projects\PowerMonitoringUtility\TedEnergy.Web.API\obj\Debug\TedEnergy.Web.API.csprojResolveAssemblyReference.cache
