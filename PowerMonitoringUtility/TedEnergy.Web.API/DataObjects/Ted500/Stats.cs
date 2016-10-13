@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace TedEnergy.Web.API.DataObjects.Ted500
 {
@@ -87,6 +88,24 @@ namespace TedEnergy.Web.API.DataObjects.Ted500
             }
         }
 
+        public class ThirdPartyPostingObject
+        {
+            public List<ThirdPartyDataObjects> ThirdParty { get; set; }
+            public struct ThirdPartyDataObjects
+            {                
+                public int Activated { get; set; }
+                public int ActStatus { get; set; }
+                public int Attempts { get; set; }
+                public int Success { get; set; }
+                public int Results { get; set; }
+                public string TimeStamp { get; set; }
+                public string Host { get; set; }
+                public int Port { get; set; }
+                public string Uri { get; set; }
+            }
+        }
+
+
         public struct BootloaderObject
         {
             public int Uploaded { get; set; }
@@ -107,6 +126,8 @@ namespace TedEnergy.Web.API.DataObjects.Ted500
         {
             get { return _mtuValObj; }
         }
+
+        public ThirdPartyPostingObject ThirdPartyPosting { get; private set; }
 
         public BootloaderObject Bootloader
         {
@@ -260,8 +281,28 @@ namespace TedEnergy.Web.API.DataObjects.Ted500
 
                 _mtuValObj = mtuVal;
 
-                //bootloader
+                //third party posting
+                this.ThirdPartyPosting = new ThirdPartyPostingObject();
+                this.ThirdPartyPosting.ThirdParty = new List<ThirdPartyPostingObject.ThirdPartyDataObjects>();
 
+                XmlNodeList nodeList = base.rawXml.DocumentElement.SelectNodes("/" + this.rootXmlName + "/ThirdPartyPosting/ThirdParty");
+                foreach (XmlNode node in nodeList)
+                {
+                    ThirdPartyPostingObject.ThirdPartyDataObjects thirdParty = new ThirdPartyPostingObject.ThirdPartyDataObjects();
+
+                    thirdParty.Activated = int.Parse(node.SelectSingleNode("Activated").InnerText);
+                    thirdParty.ActStatus = int.Parse(node.SelectSingleNode("ActStatus").InnerText);
+                    thirdParty.Attempts = int.Parse(node.SelectSingleNode("Attempts").InnerText);
+                    thirdParty.Success = int.Parse(node.SelectSingleNode("Success").InnerText);
+                    thirdParty.Results = int.Parse(node.SelectSingleNode("Results").InnerText);
+                    thirdParty.TimeStamp = node.SelectSingleNode("TimeStamp").InnerText;
+                    thirdParty.Host = node.SelectSingleNode("Host").InnerText;
+                    thirdParty.Uri = node.SelectSingleNode("URI").InnerText;
+
+                    this.ThirdPartyPosting.ThirdParty.Add(thirdParty);
+                }
+
+                //bootloader
                 int uploaded = 0;
                 string sent = string.Empty;
                 string tempVal = string.Empty;

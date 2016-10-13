@@ -77,6 +77,18 @@ namespace TedEnergy.Web.API.DataObjects.Eec
         /// </summary>
         public string Phase { get; private set; }
 
+        public override string ToString()
+        {
+            return "DashData:" + Environment.NewLine +
+                    "Now: " + this.Now + Environment.NewLine +
+                    "Tdy: " + this.Tdy + Environment.NewLine +
+                    "Mtd: " + this.Mtd + Environment.NewLine +
+                    "Avg: " + this.Avg + Environment.NewLine +
+                    "Proj: " + this.Proj + Environment.NewLine +
+                    "Voltage: " + this.Voltage + Environment.NewLine +
+                    "Phase: " + this.Phase + Environment.NewLine + Environment.NewLine;
+        }
+
         /// <summary>
         /// HACK - I don't like how any of this works.
         /// </summary>
@@ -121,6 +133,6 @@ namespace TedEnergy.Web.API.DataObjects.Eec
             }
         }
 
-        
+
     }
 }

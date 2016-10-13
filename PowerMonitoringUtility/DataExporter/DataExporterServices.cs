@@ -46,17 +46,8 @@ namespace DataExporter
             var tedApi = webApis.OfType<Ted500PollingApi>().SingleOrDefault();
             Stats stats = tedApi.GetDataObjectCache().OfType<Stats>().SingleOrDefault();
                     
-            if (null != dashData)
-            {
-                result += "DashData:" + Environment.NewLine;
-                result += "Now: " + dashData.Now + Environment.NewLine;
-                result += "Tdy: " + dashData.Tdy + Environment.NewLine;
-                result += "Mtd: " + dashData.Mtd + Environment.NewLine;
-                result += "Avg: " + dashData.Avg + Environment.NewLine;
-                result += "Proj: " + dashData.Proj + Environment.NewLine;
-                result += "Voltage: " + dashData.Voltage + Environment.NewLine;
-                result += "Phase: " + dashData.Phase + Environment.NewLine + Environment.NewLine;
-            }
+            if (null != dashData)            
+                result += dashData.ToString();
       
             if (null != rate)
             {
