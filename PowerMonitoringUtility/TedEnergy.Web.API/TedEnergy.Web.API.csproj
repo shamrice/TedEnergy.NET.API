@@ -49,11 +49,13 @@
     <Compile Include="DataObjects\Eec\UtilitySettings.cs" />
     <Compile Include="DataObjects\Mtu3k\Settings.cs" />
     <Compile Include="DataObjects\Mtu3k\Stats.cs" />
+    <Compile Include="DataObjects\Ted500\Stats.cs" />
     <Compile Include="DataObjectTypeCaster.cs" />
     <Compile Include="EccPollingApi.cs" />
     <Compile Include="Mtu3kPollingApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceType.cs" />
+    <Compile Include="Ted500PollingApi.cs" />
     <Compile Include="TedEnergyWebApi.cs" />
     <Compile Include="TedEnergyWebApiBuilder.cs" />
     <Compile Include="WebClients\WebClient.cs" />

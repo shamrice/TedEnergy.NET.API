@@ -14,7 +14,8 @@ namespace DataExporter
         public enum TypesOfServices
         {
             EEC,
-            MTU
+            MTU,
+            TED
         };
 
         public ServiceType Type { get { return this.serviceType; } }
@@ -28,6 +29,9 @@ namespace DataExporter
                     break;
                 case TypesOfServices.EEC:
                     this.serviceType = ServiceType.EEC_POLLING;
+                    break;
+                case TypesOfServices.TED:
+                    this.serviceType = ServiceType.TED500_POLLING;
                     break;
                 default:
                     throw new ArgumentException("Web API service type is invalid", "typeOfService");

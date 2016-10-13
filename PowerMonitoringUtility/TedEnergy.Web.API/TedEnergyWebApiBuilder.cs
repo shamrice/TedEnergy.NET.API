@@ -18,6 +18,9 @@ namespace TedEnergy.Web.API
                     
                 case ServiceType.MTU3K_POLLING:
                     return new Mtu3kPollingApi();
+
+                case ServiceType.TED500_POLLING:
+                    return new Ted500PollingApi();
                     
             }
 

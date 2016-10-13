@@ -23,6 +23,7 @@ namespace PowerMonitoringUtility
     {
         private DataExporterServices eecDataExporterServices;
         private DataExporterServices mtuDataExporterServices;
+        private DataExporterServices tedDataExporterServices;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,8 +33,12 @@ namespace PowerMonitoringUtility
             this.mtuDataExporterServices = new DataExporterServices(
                 new DataExporterServicesConfiguration(ServicesConfiguration.TypesOfServices.MTU));
 
+            this.tedDataExporterServices = new DataExporterServices(
+                new DataExporterServicesConfiguration(ServicesConfiguration.TypesOfServices.TED));
+
             DebugTextBlock.Text = this.eecDataExporterServices.DebugTests();
             DebugTextBlock.Text += this.mtuDataExporterServices.DebugTests();
+            DebugTextBlock.Text += this.tedDataExporterServices.DebugTests();
         }
     }
 }

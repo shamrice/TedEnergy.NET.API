@@ -9,6 +9,7 @@ namespace TedEnergy.Web.API
     public enum ServiceType
     {
         EEC_POLLING,
-        MTU3K_POLLING
+        MTU3K_POLLING,
+        TED500_POLLING
     }
 }
