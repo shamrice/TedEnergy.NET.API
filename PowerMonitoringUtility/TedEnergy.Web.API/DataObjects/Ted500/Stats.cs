@@ -80,7 +80,7 @@ namespace TedEnergy.Web.API.DataObjects.Ted500
                 public int PhaseType { get; set; }
                 public string Modulation { get; set; }
                 public string SQ { get; set; }
-                public int UseTcp { get; set; }                
+                public int UseTcp { get; set; }
 
                 public PhaseCurrentObject PhaseCurrent { get; set; }
                 public PhaseVoltageObject PhaseVoltage { get; set; }
@@ -92,7 +92,7 @@ namespace TedEnergy.Web.API.DataObjects.Ted500
         {
             public List<ThirdPartyDataObjects> ThirdParty { get; set; }
             public struct ThirdPartyDataObjects
-            {                
+            {
                 public int Activated { get; set; }
                 public int ActStatus { get; set; }
                 public int Attempts { get; set; }
@@ -116,7 +116,7 @@ namespace TedEnergy.Web.API.DataObjects.Ted500
         {
             public int Mode { get; set; }
             public int Status { get; set; }
-            public int LastError { get; set;}
+            public int LastError { get; set; }
             public int ErrorCount { get; set; }
             public int RxCount { get; set; }
             public int TxCount { get; set; }
@@ -144,7 +144,7 @@ namespace TedEnergy.Web.API.DataObjects.Ted500
         protected override bool ParseRawXML()
         {
             MtuValObject mtuVal = new MtuValObject();
-            
+
             try
             {
                 bool mtuFound = true;
@@ -153,7 +153,7 @@ namespace TedEnergy.Web.API.DataObjects.Ted500
                 {
                     MtuValObject.Mtu mtu = new MtuValObject.Mtu();
                     mtu.MtuNumber = currMtu;
-                    
+
                     string tempValue = string.Empty;
                     if (base.TryGetValueFromRawXml("MTU" + currMtu + "/PowerNow", out tempValue))
                     {
@@ -366,6 +366,67 @@ namespace TedEnergy.Web.API.DataObjects.Ted500
                 return false;
             }
 
+        }
+
+        public override string ToString()
+        {
+            string result = "Ted Stats:" + Environment.NewLine;
+
+            for (int i = 0; i < this._mtuValObj.Mtus.Count; i++)
+            {
+                result += "MTU" + (i + 1) + Environment.NewLine;
+                result += "PowerNow: " + this._mtuValObj.Mtus[i].PowerNow + Environment.NewLine;
+                result += "VotlageNow: " + this._mtuValObj.Mtus[i].VoltageNow + Environment.NewLine;
+                result += "kVANow: " + this._mtuValObj.Mtus[i].KvaNow + Environment.NewLine;
+                result += "MTURec: " + this._mtuValObj.Mtus[i].MtuRec + Environment.NewLine;
+                result += "MTUSkp: " + this._mtuValObj.Mtus[i].MtuSkp + Environment.NewLine;
+                result += "MinCount: " + this._mtuValObj.Mtus[i].MinCount + Environment.NewLine;
+                result += "ManCalPower: " + this._mtuValObj.Mtus[i].ManCalPower + Environment.NewLine;
+                result += "ManCalVoltage: " + this._mtuValObj.Mtus[i].ManCalVoltage + Environment.NewLine;
+                result += "MTUID: " + this._mtuValObj.Mtus[i].MtuId + Environment.NewLine;
+                result += "MTUVER:" + this._mtuValObj.Mtus[i].MtuVer + Environment.NewLine;
+                result += "Timestamp: " + this._mtuValObj.Mtus[i].Timestamp + Environment.NewLine;
+                result += "MTUCumulative: " + this._mtuValObj.Mtus[i].MtuCumulative + Environment.NewLine;
+                result += "PFAvg: " + this._mtuValObj.Mtus[i].PfAvg + Environment.NewLine;
+                result += "Uptime: " + this._mtuValObj.Mtus[i].Uptime + Environment.NewLine;
+                result += "PhaseType: " + this._mtuValObj.Mtus[i].PhaseType + Environment.NewLine;
+                result += "Modulation: " + this._mtuValObj.Mtus[i].Modulation + Environment.NewLine;
+                result += "SQ: " + this._mtuValObj.Mtus[i].SQ + Environment.NewLine;
+                result += "PhaseCurrent/A: " + this._mtuValObj.Mtus[i].PhaseCurrent.A + Environment.NewLine;
+                result += "PhaseCurrent/B: " + this._mtuValObj.Mtus[i].PhaseCurrent.B + Environment.NewLine;
+                result += "PhaseCurrent/C: " + this._mtuValObj.Mtus[i].PhaseCurrent.C + Environment.NewLine;
+                result += "PhaseVoltage/A: " + this._mtuValObj.Mtus[i].PhaseVoltage.A + Environment.NewLine;
+                result += "PhaseVoltage/B: " + this._mtuValObj.Mtus[i].PhaseVoltage.B + Environment.NewLine;
+                result += "PhaseVoltage/C: " + this._mtuValObj.Mtus[i].PhaseVoltage.C + Environment.NewLine + Environment.NewLine;
+            }
+
+            result += "ThirdPartyPosting" + Environment.NewLine;
+            foreach (ThirdPartyPostingObject.ThirdPartyDataObjects thirdParty in this.ThirdPartyPosting.ThirdParty)
+            {
+                result += "ThirdParty:" + Environment.NewLine;
+                result += "Activated: " + thirdParty.Activated + Environment.NewLine;
+                result += "ActStatus: " + thirdParty.ActStatus + Environment.NewLine;
+                result += "Attempts: " + thirdParty.Attempts + Environment.NewLine;
+                result += "Success: " + thirdParty.Success + Environment.NewLine;
+                result += "Results: " + thirdParty.Results + Environment.NewLine;
+                result += "TimeStamp: " + thirdParty.TimeStamp + Environment.NewLine;
+                result += "Host: " + thirdParty.Host + Environment.NewLine;
+                result += "Port: " + thirdParty.Port + Environment.NewLine;
+                result += "URI: " + thirdParty.Uri + Environment.NewLine + Environment.NewLine;
+            }
+
+            result += "Bootloader:" + Environment.NewLine;
+            result += "Uploaded: " + this.Bootloader.Uploaded + Environment.NewLine;
+            result += "Sent: " + this.Bootloader.Sent + Environment.NewLine + Environment.NewLine;
+
+            result += "USB: "  + Environment.NewLine;
+            result += "Mode: " + this.Usb.Mode + Environment.NewLine;
+            result += "Status: " + this.Usb.Status + Environment.NewLine;
+            result += "LastError: " + this.Usb.LastError + Environment.NewLine;
+            result += "RxCount: " + this.Usb.RxCount + Environment.NewLine;
+            result += "TxCount: " + this.Usb.TxCount + Environment.NewLine + Environment.NewLine;
+
+            return result;
         }
     }
 }

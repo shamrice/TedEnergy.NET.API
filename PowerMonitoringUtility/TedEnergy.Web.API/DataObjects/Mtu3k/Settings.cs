@@ -72,5 +72,10 @@ namespace TedEnergy.Web.API.DataObjects.Mtu3k
 
             return false;
         }
+
+        public override string ToString()
+        {
+            return "Mtu3k Settings";
+        }
     }
 }

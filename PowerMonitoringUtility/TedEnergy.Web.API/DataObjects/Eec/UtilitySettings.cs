@@ -70,5 +70,10 @@ namespace TedEnergy.Web.API.DataObjects.Eec
              */
             return false;
         }
+
+        public override string ToString()
+        {
+            return "Utility Settings";
+        }
     }
 }

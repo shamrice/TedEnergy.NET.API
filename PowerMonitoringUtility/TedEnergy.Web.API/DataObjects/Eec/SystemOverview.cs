@@ -77,7 +77,30 @@ namespace TedEnergy.Web.API.DataObjects.Eec
 
         public MtuValObject MtuVal {
             get { return _mtuValObj; }
-        } 
+        }
+
+        public override string ToString()
+        {
+            string result = "SystemOverview: " + Environment.NewLine;
+            foreach (TedEnergy.Web.API.DataObjects.Eec.SystemOverview.MtuValObject.Mtu mtu in this.MtuVal.Mtus)
+            {
+                result += "MTU" + mtu.MtuNumber + Environment.NewLine;
+                result += "Value: " + mtu.Value + Environment.NewLine;
+                result += "KVA: " + mtu.Kva + Environment.NewLine;
+                result += "PF: " + mtu.Pf + Environment.NewLine;
+                result += "Voltage: " + mtu.Voltage + Environment.NewLine;
+                result += "Phase: " + mtu.Phase + Environment.NewLine;
+                result += "Conn: " + mtu.Conn + Environment.NewLine;
+                result += "PhaseCurrent-A: " + mtu.PhaseCurrent.A + Environment.NewLine;
+                result += "PhaseCurrent-B: " + mtu.PhaseCurrent.B + Environment.NewLine;
+                result += "PhaseCurrent-C: " + mtu.PhaseCurrent.C + Environment.NewLine;
+                result += "PhaseVoltage-A: " + mtu.PhaseVoltage.A + Environment.NewLine;
+                result += "PhaseVoltage-B: " + mtu.PhaseVoltage.B + Environment.NewLine;
+                result += "PhaseVoltage-C: " + mtu.PhaseVoltage.C + Environment.NewLine + Environment.NewLine;
+            }
+
+            return result;
+        }
 
         protected override bool ParseRawXML()
         {

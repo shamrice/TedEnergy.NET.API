@@ -57,6 +57,23 @@ namespace TedEnergy.Web.API.DataObjects.Eec
             get { return serviceType; }
         }
 
+        public override string ToString()
+        {
+            return "Rate: " + Environment.NewLine +
+             "Time: " + this.Time + Environment.NewLine +
+             "Value: " + this.Value + Environment.NewLine +
+             "Tier: " + this.Tier + Environment.NewLine +
+             "TOU: " + this.Tou + Environment.NewLine +
+             "MeterReadDate: " + this.MeterReadDate + Environment.NewLine +
+             "DaysLeft: " + this.DaysLeft + Environment.NewLine +
+             "PlanType: " + this.PlanType + Environment.NewLine +
+             "TouDescription: " + this.TouDescription + Environment.NewLine +
+             "DemandCharge/InUse: " + this.DemandCharge.InUse + Environment.NewLine +
+             "DemandCharge/DemandBase: " + this.DemandCharge.DemandBase + Environment.NewLine +
+             "DemandCharge/Power: " + this.DemandCharge.Power + Environment.NewLine +
+             "DemandCharge/Cost: " + this.DemandCharge.Cost + Environment.NewLine + Environment.NewLine;
+        }
+
 
         /// <summary>
         /// HACK - I don't like how any of this works.

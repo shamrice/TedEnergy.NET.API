@@ -159,7 +159,7 @@ namespace TedEnergy.Web.API.DataObjects.Mtu3k
             public List<ThirdPartyDataObjects> ThirdParty { get; set; }
             public struct ThirdPartyDataObjects
             {
-                public int ThirdPartyNumber { get;set; }
+                public int ThirdPartyNumber { get; set; }
                 public int Activated { get; set; }
                 public int ActStatus { get; set; }
                 public int Attempts { get; set; }
@@ -655,6 +655,146 @@ namespace TedEnergy.Web.API.DataObjects.Mtu3k
                 return false;
             }
 
+        }
+
+        public override string ToString()
+        {
+            string result = "Stats:\n";
+            result += "Readings/PowerPhaseA: " + this.Readings.PowerPhaseA + Environment.NewLine;
+            result += "Readings/PowerPhaseB: " + this.Readings.PowerPhaseB + Environment.NewLine;
+            result += "Readings/PowerPhaseC: " + this.Readings.PowerPhaseC + Environment.NewLine + Environment.NewLine;
+
+            result += "Readings/VoltagePhaseA: " + this.Readings.VoltagePhaseA + Environment.NewLine;
+            result += "Readings/VoltagePhaseB: " + this.Readings.VoltagePhaseB + Environment.NewLine;
+            result += "Readings/VoltagePhaseC: " + this.Readings.VoltagePhaseC + Environment.NewLine + Environment.NewLine;
+
+            result += "Readings/KVAPhaseA: " + this.Readings.KvaPhaseA + Environment.NewLine;
+            result += "Readings/KVAPhaseB: " + this.Readings.KvaPhaseB + Environment.NewLine;
+            result += "Readings/KVAPhaseC: " + this.Readings.KvaPhaseC + Environment.NewLine + Environment.NewLine;
+
+            result += "Readings/CurrentPhaseA: " + this.Readings.CurrentPhaseA + Environment.NewLine;
+            result += "Readings/CurrentPhaseB: " + this.Readings.CurrentPhaseB + Environment.NewLine;
+            result += "Readings/CurrentPhaseC: " + this.Readings.CurrentPhaseC + Environment.NewLine + Environment.NewLine;
+
+            result += "MeterRunningTotal/PhaseA: " + this.MeterRunningTotal.PhaseA + Environment.NewLine;
+            result += "MeterRunningTotal/PhaseB: " + this.MeterRunningTotal.PhaseB + Environment.NewLine;
+            result += "MeterRunningTotal/PhaseC: " + this.MeterRunningTotal.PhaseC + Environment.NewLine + Environment.NewLine;
+
+            result += "System/phsign: " + this.System.PhSign + Environment.NewLine;
+            result += "System/status0: " + this.System.Status0 + Environment.NewLine;
+            result += "System/status1: " + this.System.Status1 + Environment.NewLine;
+            result += "System/aderun: " + this.System.AdeRun + Environment.NewLine;
+            result += "System/adereset: " + this.System.AdeReset + Environment.NewLine + Environment.NewLine;
+
+            result += "Calibration/VoltageCONSTA: " + this.Calibration.VoltageConstA + Environment.NewLine;
+            result += "Calibration/VoltageCONSTB: " + this.Calibration.VoltageConstB + Environment.NewLine;
+            result += "Calibration/VoltageCONSTC: " + this.Calibration.VoltageConstC + Environment.NewLine;
+            result += "Calibration/VoltageOFFSETA: " + this.Calibration.VoltageOffsetA + Environment.NewLine;
+            result += "Calibration/VoltageOFFSETB: " + this.Calibration.VoltageOffsetB + Environment.NewLine;
+            result += "Calibration/VoltageOFFSETC: " + this.Calibration.VoltageOffsetC + Environment.NewLine;
+
+            result += "Calibration/CurrentCONSTA: " + this.Calibration.CurrentConstA + Environment.NewLine;
+            result += "Calibration/CurrentCONSTB: " + this.Calibration.CurrentConstB + Environment.NewLine;
+            result += "Calibration/CurrentCONSTC: " + this.Calibration.CurrentConstC + Environment.NewLine;
+            result += "Calibration/CurrentOFFSETA: " + this.Calibration.CurrentOffsetA + Environment.NewLine;
+            result += "Calibration/CurrentOFFSETB: " + this.Calibration.CurrentOffsetB + Environment.NewLine;
+            result += "Calibration/CurrentOFFSETC: " + this.Calibration.CurrentOffsetC + Environment.NewLine;
+
+            result += "Calibration/PowerCONSTA: " + this.Calibration.PowerConstA + Environment.NewLine;
+            result += "Calibration/PowerCONSTB: " + this.Calibration.PowerConstB + Environment.NewLine;
+            result += "Calibration/PowerCONSTC: " + this.Calibration.PowerConstC + Environment.NewLine;
+            result += "Calibration/PowerOFFSETA: " + this.Calibration.PowerOffsetA + Environment.NewLine;
+            result += "Calibration/PowerOFFSETB: " + this.Calibration.PowerOffsetB + Environment.NewLine;
+            result += "Calibration/PowerOFFSETC: " + this.Calibration.PowerOffsetC + Environment.NewLine;
+
+            result += "Calibration/KVACONSTA: " + this.Calibration.KvaConstA + Environment.NewLine;
+            result += "Calibration/KVACONSTB: " + this.Calibration.KvaConstB + Environment.NewLine;
+            result += "Calibration/KVACONSTC: " + this.Calibration.KvaConstC + Environment.NewLine;
+            result += "Calibration/KVAOFFSETA: " + this.Calibration.KvaOffsetA + Environment.NewLine;
+            result += "Calibration/KVAOFFSETB: " + this.Calibration.KvaOffsetB + Environment.NewLine;
+            result += "Calibration/KVAOFFSETC: " + this.Calibration.KvaOffsetC + Environment.NewLine + Environment.NewLine;
+
+
+            result += "DeltaCalibration/DVoltageCONSTA: " + this.DeltaCalibration.DVoltageConstA + Environment.NewLine;
+            result += "DeltaCalibration/DVoltageCONSTB: " + this.DeltaCalibration.DVoltageConstB + Environment.NewLine;
+            result += "DeltaCalibration/DVoltageCONSTC: " + this.DeltaCalibration.DVoltageConstC + Environment.NewLine;
+            result += "DeltaCalibration/DVoltageOFFSETA: " + this.DeltaCalibration.DVoltageOffsetA + Environment.NewLine;
+            result += "DeltaCalibration/DVoltageOFFSETB: " + this.DeltaCalibration.DVoltageOffsetB + Environment.NewLine;
+            result += "DeltaCalibration/DVoltageOFFSETC: " + this.DeltaCalibration.DVoltageOffsetC + Environment.NewLine;
+
+            result += "DeltaCalibration/DCurrentCONSTA: " + this.DeltaCalibration.DCurrentConstA + Environment.NewLine;
+            result += "DeltaCalibration/DCurrentCONSTB: " + this.DeltaCalibration.DCurrentConstB + Environment.NewLine;
+            result += "DeltaCalibration/DCurrentCONSTC: " + this.DeltaCalibration.DCurrentConstC + Environment.NewLine;
+            result += "DeltaCalibration/DCurrentOFFSETA: " + this.DeltaCalibration.DCurrentOffsetA + Environment.NewLine;
+            result += "DeltaCalibration/DCurrentOFFSETB: " + this.DeltaCalibration.DCurrentOffsetB + Environment.NewLine;
+            result += "DeltaCalibration/DCurrentOFFSETC: " + this.DeltaCalibration.DCurrentOffsetC + Environment.NewLine;
+
+            result += "DeltaCalibration/DPowerCONSTA: " + this.DeltaCalibration.DPowerConstA + Environment.NewLine;
+            result += "DeltaCalibration/DPowerCONSTB: " + this.DeltaCalibration.DPowerConstB + Environment.NewLine;
+            result += "DeltaCalibration/DPowerCONSTC: " + this.DeltaCalibration.DPowerConstC + Environment.NewLine;
+            result += "DeltaCalibration/DPowerOFFSETA: " + this.DeltaCalibration.DPowerOffsetA + Environment.NewLine;
+            result += "DeltaCalibration/DPowerOFFSETB: " + this.DeltaCalibration.DPowerOffsetB + Environment.NewLine;
+            result += "DeltaCalibration/DPowerOFFSETC: " + this.DeltaCalibration.DPowerOffsetC + Environment.NewLine;
+
+            result += "DeltaCalibration/DKVACONSTA: " + this.DeltaCalibration.DKvaConstA + Environment.NewLine;
+            result += "DeltaCalibration/DKVACONSTB: " + this.DeltaCalibration.DKvaConstB + Environment.NewLine;
+            result += "DeltaCalibration/DKVACONSTC: " + this.DeltaCalibration.DKvaConstC + Environment.NewLine;
+            result += "DeltaCalibration/DKVAOFFSETA: " + this.DeltaCalibration.DKvaOffsetA + Environment.NewLine;
+            result += "DeltaCalibration/DKVAOFFSETB: " + this.DeltaCalibration.DKvaOffsetB + Environment.NewLine;
+            result += "DeltaCalibration/DKVAOFFSETC: " + this.DeltaCalibration.DKvaOffsetC + Environment.NewLine + Environment.NewLine;
+
+            //
+            result += "HGDeltaCalibration/HDVoltageCONSTA: " + this.HGDeltaCalibration.HDVoltageConstA + Environment.NewLine;
+            result += "HGDeltaCalibration/HDVoltageCONSTB: " + this.HGDeltaCalibration.HDVoltageConstB + Environment.NewLine;
+            result += "HGDeltaCalibration/HDVoltageCONSTC: " + this.HGDeltaCalibration.HDVoltageConstC + Environment.NewLine;
+            result += "HGDeltaCalibration/HDVoltageOFFSETA: " + this.HGDeltaCalibration.HDVoltageOffsetA + Environment.NewLine;
+            result += "HGDeltaCalibration/HDVoltageOFFSETB: " + this.HGDeltaCalibration.HDVoltageOffsetB + Environment.NewLine;
+            result += "HGDeltaCalibration/HDVoltageOFFSETC: " + this.HGDeltaCalibration.HDVoltageOffsetC + Environment.NewLine;
+
+            result += "HGDeltaCalibration/HDCurrentCONSTA: " + this.HGDeltaCalibration.HDCurrentConstA + Environment.NewLine;
+            result += "HGDeltaCalibration/HDCurrentCONSTB: " + this.HGDeltaCalibration.HDCurrentConstB + Environment.NewLine;
+            result += "HGDeltaCalibration/HDCurrentCONSTC: " + this.HGDeltaCalibration.HDCurrentConstC + Environment.NewLine;
+            result += "HGDeltaCalibration/HDCurrentOFFSETA: " + this.HGDeltaCalibration.HDCurrentOffsetA + Environment.NewLine;
+            result += "HGDeltaCalibration/HDCurrentOFFSETB: " + this.HGDeltaCalibration.HDCurrentOffsetB + Environment.NewLine;
+            result += "HGDeltaCalibration/HDCurrentOFFSETC: " + this.HGDeltaCalibration.HDCurrentOffsetC + Environment.NewLine;
+
+            result += "HGDeltaCalibration/HDPowerCONSTA: " + this.HGDeltaCalibration.HDPowerConstA + Environment.NewLine;
+            result += "HGDeltaCalibration/HDPowerCONSTB: " + this.HGDeltaCalibration.HDPowerConstB + Environment.NewLine;
+            result += "HGDeltaCalibration/HDPowerCONSTC: " + this.HGDeltaCalibration.HDPowerConstC + Environment.NewLine;
+            result += "HGDeltaCalibration/HDPowerOFFSETA: " + this.HGDeltaCalibration.HDPowerOffsetA + Environment.NewLine;
+            result += "HGDeltaCalibration/HDPowerOFFSETB: " + this.HGDeltaCalibration.HDPowerOffsetB + Environment.NewLine;
+            result += "HGDeltaCalibration/HDPowerOFFSETC: " + this.HGDeltaCalibration.HDPowerOffsetC + Environment.NewLine;
+
+            result += "HGDeltaCalibration/HDKVACONSTA: " + this.HGDeltaCalibration.HDKvaConstA + Environment.NewLine;
+            result += "HGDeltaCalibration/HDKVACONSTB: " + this.HGDeltaCalibration.HDKvaConstB + Environment.NewLine;
+            result += "HGDeltaCalibration/HDKVACONSTC: " + this.HGDeltaCalibration.HDKvaConstC + Environment.NewLine;
+            result += "HGDeltaCalibration/HDKVAOFFSETA: " + this.HGDeltaCalibration.HDKvaOffsetA + Environment.NewLine;
+            result += "HGDeltaCalibration/HDKVAOFFSETB: " + this.HGDeltaCalibration.HDKvaOffsetB + Environment.NewLine;
+            result += "HGDeltaCalibration/HDKVAOFFSETC: " + this.HGDeltaCalibration.HDKvaOffsetC + Environment.NewLine + Environment.NewLine;
+
+            //third party 
+            foreach (var thirdparty in this.ThirdPartyPosting.ThirdParty)
+            {
+                result += "Third Party:" + Environment.NewLine;
+                result += "ThirdPartyPosting/ThirdParty/Activated: " + thirdparty.Activated + Environment.NewLine;
+                result += "ThirdPartyPosting/ThirdParty/ActStatus: " + thirdparty.ActStatus + Environment.NewLine;
+                result += "ThirdPartyPosting/ThirdParty/Attempts: " + thirdparty.Attempts + Environment.NewLine;
+                result += "ThirdPartyPosting/ThirdParty/Success: " + thirdparty.Success + Environment.NewLine;
+                result += "ThirdPartyPosting/ThirdParty/Results: " + thirdparty.Results + Environment.NewLine;
+                result += "ThirdPartyPosting/ThirdParty/TimeStamp: " + thirdparty.TimeStamp + Environment.NewLine;
+                result += "ThirdPartyPosting/ThirdParty/Host: " + thirdparty.Host + Environment.NewLine;
+                result += "ThirdPartyPosting/ThirdParty/Port: " + thirdparty.Port + Environment.NewLine;
+                result += "ThirdPartyPosting/ThirdParty/URI: " + thirdparty.Uri + Environment.NewLine + Environment.NewLine;
+            }
+
+            result += "TimeServer: " + this.TimeServer + Environment.NewLine;
+            result += "EpochTime: " + this.EpochTime + Environment.NewLine;
+            result += "NTPEnabled: " + this.NtpEnabled + Environment.NewLine;
+            result += "SerialID: " + this.SerialId + Environment.NewLine;
+            result += "FWVersion: " + this.FwVersion + Environment.NewLine;
+            result += "UIVersion: " + this.UiVersion + Environment.NewLine + Environment.NewLine;
+
+            return result;
         }
     }
 }
