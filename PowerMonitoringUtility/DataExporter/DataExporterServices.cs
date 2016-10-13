@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TedEnergy.Web.API;
 using TedEnergy.Web.API.DataObjects;
 using TedEnergy.Web.API.DataObjects.Eec;
-using TedEnergy.Web.API.DataObjects.Mtu3k;
+using TedEnergy.Web.API.DataObjects.Ted500;
 using TedEnergy.Web.API.WebClients;
 
 namespace DataExporter
@@ -95,7 +95,7 @@ namespace DataExporter
                     result += "PhaseVoltage-C: " + mtu.PhaseVoltage.C + Environment.NewLine + Environment.NewLine; ;
                 }
             }
-
+            /*
             if (null != stats)
             {
                 result += "Stats:\n";
@@ -233,7 +233,7 @@ namespace DataExporter
                 result += "FWVersion: " + stats.FwVersion + Environment.NewLine;
                 result += "UIVersion: " + stats.UiVersion + Environment.NewLine + Environment.NewLine;
             }
-
+            */
             return result;
         }
 
