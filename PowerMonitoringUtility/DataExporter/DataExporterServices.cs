@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DataExporter.Core;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,13 +17,14 @@ namespace DataExporter
     {
         private readonly IList<TedEnergyWebApi> webApis;
         private readonly ServicesConfiguration config;
+        private readonly Exporter exporter;
 
         public DataExporterServices(ServicesConfiguration configuration)
         {
             this.config = configuration;
             this.webApis = new List<TedEnergyWebApi>();
 
-            foreach (ServiceType serviceType in this.config.ConfiguredTypesOfServices)            
+            foreach (ServiceType serviceType in this.config.ConfiguredTypesOfServices)
                 this.webApis.Add(TedEnergyWebApiBuilder.Build(serviceType));
 
             foreach (TedEnergyWebApi webApi in this.webApis)
@@ -32,12 +35,19 @@ namespace DataExporter
                     throw new NullReferenceException("TedEnergyWebApiBuilder returned a null value attempting to build TedEnergyApi using the " +
                         "configuration suppled.");
             }
+
+            this.exporter = new Exporter(config.ExportLocation, this.webApis);
+        }
+
+        public void Export()
+        {
+            exporter.ExportToCsv();
         }
 
         public string DebugTests()
         {
-            string result = string.Empty;            
-            
+            string result = string.Empty;
+
             var eecApi = webApis.OfType<EccPollingApi>().SingleOrDefault();
             DashData dashData = eecApi.GetDataObjectCache().OfType<DashData>().SingleOrDefault();
             Rate rate = eecApi.GetDataObjectCache().OfType<Rate>().SingleOrDefault();
@@ -45,8 +55,8 @@ namespace DataExporter
 
             var tedApi = webApis.OfType<Ted500PollingApi>().SingleOrDefault();
             Stats tedStats = tedApi.GetDataObjectCache().OfType<Stats>().SingleOrDefault();
-                    
-            if (null != dashData)            
+
+            if (null != dashData)
                 result += dashData.ToString();
 
             if (null != rate)

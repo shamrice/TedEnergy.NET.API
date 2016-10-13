@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Power Monitoring Export Utility" Height="350" Width="500">
     <Grid>
-        <ScrollViewer>
-            <TextBlock Name="DebugTextBlock" Width="500" Height="auto" ScrollViewer.CanContentScroll="True"></TextBlock>
+        <ScrollViewer HorizontalAlignment="Left">
+            <TextBlock Name="DebugTextBlock" Width="400" Height="auto"  ScrollViewer.CanContentScroll="True"></TextBlock>
         </ScrollViewer>
+        <Button Name="ExportButton" Width="75" Height="50" HorizontalAlignment="Right" Click="ExportButton_Click">Export</Button>
     </Grid>
 </Window>

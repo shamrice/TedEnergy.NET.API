@@ -37,5 +37,10 @@ namespace PowerMonitoringUtility
 
             DebugTextBlock.Text = this.exporterServices.DebugTests();
         }
+
+        private void ExportButton_Click(object sender, RoutedEventArgs e)
+        {
+            exporterServices.Export();
+        }
     }
 }
