@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TedEnergy.Web.API.WebClients;
 
-namespace TedEnergy.Web.API.DataObjects.Mtu
+namespace TedEnergy.Web.API.DataObjects.Mtu3k
 {
     public class Settings : DataObject
     {
@@ -28,16 +28,7 @@ namespace TedEnergy.Web.API.DataObjects.Mtu
             get { return serviceType; }
         }
 
-        public Settings()
-        {
-            base.webClient = new XmlWebClient(objectName);
-            base.rawXml = webClient.GetXmlData();
-
-            if (!ParseRawXML())
-                Console.WriteLine("Failure attempting to parse data from web services.");
-        }
-
-        private bool ParseRawXML()
+        protected override bool ParseRawXML()
         {
             /*
             try

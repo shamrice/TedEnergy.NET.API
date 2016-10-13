@@ -52,16 +52,6 @@ namespace TedEnergy.Web.API.DataObjects.Eec
 
         public DemandChargeDataObject DemandCharge { get; private set; }
 
-        public Rate()
-        {            
-            base.webClient = new XmlWebClient(objectName);
-            base.rawXml = webClient.GetXmlData();
-
-            if (!ParseRawXML())
-                Console.WriteLine("Failure attempting to parse data from web services.");
-        }
-
-
         public override ServiceType Type
         {
             get { return serviceType; }
@@ -72,7 +62,7 @@ namespace TedEnergy.Web.API.DataObjects.Eec
         /// HACK - I don't like how any of this works.
         /// </summary>
         /// <returns></returns>
-        private bool ParseRawXML()
+        protected override bool ParseRawXML()
         {
             try
             {

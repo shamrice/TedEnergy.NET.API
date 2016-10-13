@@ -47,8 +47,8 @@
     <Compile Include="DataObjects\Eec\SystemOverview.cs" />
     <Compile Include="DataObjects\Eec\SystemSettings.cs" />
     <Compile Include="DataObjects\Eec\UtilitySettings.cs" />
-    <Compile Include="DataObjects\Mtu\Settings.cs" />
-    <Compile Include="DataObjects\Mtu\Stats.cs" />
+    <Compile Include="DataObjects\Mtu3k\Settings.cs" />
+    <Compile Include="DataObjects\Mtu3k\Stats.cs" />
     <Compile Include="DataObjectTypeCaster.cs" />
     <Compile Include="EccPollingApi.cs" />
     <Compile Include="Mtu3kPollingApi.cs" />

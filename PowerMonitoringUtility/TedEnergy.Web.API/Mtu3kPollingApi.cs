@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TedEnergy.Web.API.DataObjects;
-using TedEnergy.Web.API.DataObjects.Mtu;
+using TedEnergy.Web.API.DataObjects.Mtu3k;
 
 namespace TedEnergy.Web.API
 {
     public class Mtu3kPollingApi : TedEnergyWebApi
     {
         private const ServiceType serviceType = ServiceType.MTU3K_POLLING;
+
         public override ServiceType Type { get { return serviceType; } }
 
         public override void RefreshDataObjectCache()

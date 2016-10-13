@@ -14,7 +14,9 @@ namespace TedEnergy.Web.API.DataObjects
         protected abstract string rootXmlName { get; }
 
         protected XmlDocument rawXml;
-        protected WebClient webClient;       
+        protected WebClient webClient;
+
+        protected abstract bool ParseRawXML();
 
         /// <summary>
         /// Raw XML data retreived from the Ted Energy web services.
@@ -43,6 +45,15 @@ namespace TedEnergy.Web.API.DataObjects
 
             value = string.Empty;
             return false;
+        }
+
+        public DataObject()
+        {
+            webClient = new XmlWebClient(objectName);
+            rawXml = webClient.GetXmlData();
+
+            if (!ParseRawXML())
+                Console.WriteLine("Failure attempting to parse data from web services.");
         }
 
     }

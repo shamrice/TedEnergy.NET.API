@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TedEnergy.Web.API.WebClients;
 
-namespace TedEnergy.Web.API.DataObjects.Mtu
+namespace TedEnergy.Web.API.DataObjects.Mtu3k
 {
     public class Stats : DataObject
     {
@@ -187,7 +187,6 @@ namespace TedEnergy.Web.API.DataObjects.Mtu
         public string FwVersion { get; private set; }
         public string UiVersion { get; private set; }
 
-
         public Stats()
         {
             this.Readings = new ReadingsObject();
@@ -196,17 +195,10 @@ namespace TedEnergy.Web.API.DataObjects.Mtu
             this.Calibration = new CalibrationObject();
             this.DeltaCalibration = new DeltaCalibrationObject();
             this.HGDeltaCalibration = new HGDeltaCalibrationObject();
-
-            base.webClient = new XmlWebClient(objectName);
-            base.rawXml = webClient.GetXmlData();
-
-            if (!ParseRawXML())
-                Console.WriteLine("Failure attempting to parse data from web services.");
         }
 
-        private bool ParseRawXML()
+        protected override bool ParseRawXML()
         {
-
             try
             {
                 //readings

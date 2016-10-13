@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TedEnergy.Web.API.DataObjects;
 
 namespace TedEnergy.Web.API
 {
@@ -36,6 +37,20 @@ namespace TedEnergy.Web.API
                 {
                     return (T)inDataObject;
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return default(T);
+        }
+
+        public static T GetFromDataObjectCache(List<DataObject> dataObjectCache)
+        {
+            try
+            {
+                return dataObjectCache.OfType<T>().SingleOrDefault();
             }
             catch (Exception ex)
             {

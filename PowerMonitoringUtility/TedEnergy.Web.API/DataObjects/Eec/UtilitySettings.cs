@@ -28,15 +28,7 @@ namespace TedEnergy.Web.API.DataObjects.Eec
             get { return serviceType; }
         }
 
-        public UtilitySettings(){
-            base.webClient = new XmlWebClient(objectName);
-            base.rawXml = webClient.GetXmlData();
-
-            if (!ParseRawXML())
-                Console.WriteLine("Failure attempting to parse data from web services.");
-        }
-
-        private bool ParseRawXML()
+        protected override bool ParseRawXML()
         {
             /*
             try

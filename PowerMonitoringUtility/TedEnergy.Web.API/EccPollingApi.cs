@@ -18,10 +18,6 @@ namespace TedEnergy.Web.API
             get { return serviceType; }
         }
 
-        public EccPollingApi()
-        {
-        }
-
         public override void RefreshDataObjectCache()
         {
             base.dataObjectCache = new List<DataObject>();

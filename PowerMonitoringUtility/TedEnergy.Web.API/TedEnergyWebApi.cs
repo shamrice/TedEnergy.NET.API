@@ -10,6 +10,7 @@ namespace TedEnergy.Web.API
     public abstract class TedEnergyWebApi
     {
         protected List<DataObject> dataObjectCache = new List<DataObject>();
+
         public abstract ServiceType Type { get; }
 
         public abstract void RefreshDataObjectCache();
@@ -17,7 +18,7 @@ namespace TedEnergy.Web.API
         public List<DataObject> GetDataObjectCache()
         {
             return dataObjectCache;
-        }
+        } 
         
     }
 }

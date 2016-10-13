@@ -12,7 +12,7 @@ namespace TedEnergy.Web.API.DataObjects.Eec
         private const string _objName = @"SystemOverview";
         private const string _rootXmlName = @"DialDataDetail";
         private const ServiceType serviceType = ServiceType.EEC_POLLING;
-        private MtuValObject _mtuValObj;
+        private MtuValObject _mtuValObj = new MtuValObject();
 
         protected override string objectName
         {
@@ -79,18 +79,7 @@ namespace TedEnergy.Web.API.DataObjects.Eec
             get { return _mtuValObj; }
         } 
 
-        public SystemOverview()
-        {
-            base.webClient = new XmlWebClient(objectName);
-            base.rawXml = webClient.GetXmlData();
-
-            _mtuValObj = new MtuValObject();
-
-            if (!ParseRawXML())
-                Console.WriteLine("Failure attempting to parse data from web services.");
-        }
-
-        private bool ParseRawXML()
+        protected override bool ParseRawXML()
         {
             MtuValObject mtuVal = new MtuValObject();
 

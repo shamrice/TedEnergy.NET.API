@@ -77,20 +77,11 @@ namespace TedEnergy.Web.API.DataObjects.Eec
         /// </summary>
         public string Phase { get; private set; }
 
-
-        public DashData() {
-            base.webClient = new XmlWebClient(objectName);
-            base.rawXml = webClient.GetXmlData();
-
-            if (!ParseRawXML())
-                Console.WriteLine("Failure attempting to parse data from web services.");
-        }
-
         /// <summary>
         /// HACK - I don't like how any of this works.
         /// </summary>
         /// <returns></returns>
-        private bool ParseRawXML()
+        protected override bool ParseRawXML()
         {
             try
             {
