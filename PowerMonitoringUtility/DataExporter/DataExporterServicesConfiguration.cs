@@ -10,9 +10,6 @@ namespace DataExporter
 {
     public class DataExporterServicesConfiguration : ServicesConfiguration
     {
-
-        public DataExporterServicesConfiguration(DataExporter.ServicesConfiguration.TypesOfServices typeOfService) : base(typeOfService)
-        { 
-        }
+        public DataExporterServicesConfiguration(IList<TypesOfServices> typesOfServices) : base(typesOfServices) { }
     }
 }

@@ -10,7 +10,8 @@ namespace DataExporter
 {
     public abstract class ServicesConfiguration
     {
-        protected readonly ServiceType serviceType;
+        protected readonly IList<ServiceType> configuredServiceTypes;
+
         public enum TypesOfServices
         {
             EEC,
@@ -18,25 +19,21 @@ namespace DataExporter
             TED
         };
 
-        public ServiceType Type { get { return this.serviceType; } }
+        public IList<ServiceType> ConfiguredTypesOfServices { get { return this.configuredServiceTypes; } }
 
-        public ServicesConfiguration(TypesOfServices typeOfService)
+        public ServicesConfiguration(IList<TypesOfServices> typesOfServices)
         {
-            switch (typeOfService)
-            {
-                case TypesOfServices.MTU:
-                    this.serviceType = ServiceType.MTU3K_POLLING;
-                    break;
-                case TypesOfServices.EEC:
-                    this.serviceType = ServiceType.EEC_POLLING;
-                    break;
-                case TypesOfServices.TED:
-                    this.serviceType = ServiceType.TED500_POLLING;
-                    break;
-                default:
-                    throw new ArgumentException("Web API service type is invalid", "typeOfService");
-            }
+            this.configuredServiceTypes = new List<ServiceType>();
 
+            if (typesOfServices.Contains(TypesOfServices.EEC))
+                configuredServiceTypes.Add(ServiceType.EEC_POLLING);
+
+            if (typesOfServices.Contains(TypesOfServices.MTU))
+                configuredServiceTypes.Add(ServiceType.MTU3K_POLLING);
+
+            if (typesOfServices.Contains(TypesOfServices.TED))
+                configuredServiceTypes.Add(ServiceType.TED500_POLLING);
+            
         }
 
     }

@@ -21,24 +21,21 @@ namespace PowerMonitoringUtility
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DataExporterServices eecDataExporterServices;
-        private DataExporterServices mtuDataExporterServices;
-        private DataExporterServices tedDataExporterServices;
+        private DataExporterServices exporterServices;
         public MainWindow()
         {
             InitializeComponent();
-            this.eecDataExporterServices = new DataExporterServices(
-                new DataExporterServicesConfiguration(DataExporterServicesConfiguration.TypesOfServices.EEC));
 
-            this.mtuDataExporterServices = new DataExporterServices(
-                new DataExporterServicesConfiguration(ServicesConfiguration.TypesOfServices.MTU));
+            ServicesConfiguration config = new DataExporterServicesConfiguration(
+                new List<DataExporter.ServicesConfiguration.TypesOfServices> {
+                    DataExporter.ServicesConfiguration.TypesOfServices.EEC,
+                    DataExporter.ServicesConfiguration.TypesOfServices.MTU,
+                    DataExporter.ServicesConfiguration.TypesOfServices.TED,
+            });
 
-            this.tedDataExporterServices = new DataExporterServices(
-                new DataExporterServicesConfiguration(ServicesConfiguration.TypesOfServices.TED));
+            this.exporterServices = new DataExporterServices(config);
 
-            DebugTextBlock.Text = this.eecDataExporterServices.DebugTests();
-            DebugTextBlock.Text += this.mtuDataExporterServices.DebugTests();
-            DebugTextBlock.Text += this.tedDataExporterServices.DebugTests();
+            DebugTextBlock.Text = this.exporterServices.DebugTests();
         }
     }
 }

@@ -13,32 +13,38 @@ namespace DataExporter
 {
     public class DataExporterServices
     {
-        private readonly TedEnergyWebApi webApi;
+        private readonly IList<TedEnergyWebApi> webApis;
         private readonly ServicesConfiguration config;
 
         public DataExporterServices(ServicesConfiguration configuration)
         {
             this.config = configuration;
-            this.webApi = TedEnergyWebApiBuilder.Build(config.Type);
+            this.webApis = new List<TedEnergyWebApi>();
 
-            if (null != webApi)
+            foreach (ServiceType serviceType in this.config.ConfiguredTypesOfServices)            
+                this.webApis.Add(TedEnergyWebApiBuilder.Build(serviceType));
+
+            foreach (TedEnergyWebApi webApi in this.webApis)
             {
-                webApi.RefreshDataObjectCache();
-
+                if (null != webApi)
+                    webApi.RefreshDataObjectCache();
+                else
+                    throw new NullReferenceException("TedEnergyWebApiBuilder returned a null value attempting to build TedEnergyApi using the " +
+                        "configuration suppled.");
             }
-            else
-                throw new NullReferenceException("TedEnergyWebApiBuilder returned a null value attempting to build TedEnergyApi using the " +
-                    "configuration suppled.");
         }
 
         public string DebugTests()
         {
-            string result = string.Empty;
+            string result = string.Empty;            
+            
+            var eecApi = webApis.OfType<EccPollingApi>().SingleOrDefault();
+            DashData dashData = eecApi.GetDataObjectCache().OfType<DashData>().SingleOrDefault();
+            Rate rate = eecApi.GetDataObjectCache().OfType<Rate>().SingleOrDefault();
+            SystemOverview sysOverview = eecApi.GetDataObjectCache().OfType<SystemOverview>().SingleOrDefault();
 
-            DashData dashData = webApi.GetDataObjectCache().OfType<DashData>().SingleOrDefault();
-            Rate rate = webApi.GetDataObjectCache().OfType<Rate>().SingleOrDefault();
-            SystemOverview sysOverview = webApi.GetDataObjectCache().OfType<SystemOverview>().SingleOrDefault();
-            Stats stats = webApi.GetDataObjectCache().OfType<Stats>().SingleOrDefault();
+            var tedApi = webApis.OfType<Ted500PollingApi>().SingleOrDefault();
+            Stats stats = tedApi.GetDataObjectCache().OfType<Stats>().SingleOrDefault();
                     
             if (null != dashData)
             {
