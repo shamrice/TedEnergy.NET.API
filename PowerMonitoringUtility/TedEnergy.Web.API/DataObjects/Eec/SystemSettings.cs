@@ -9,7 +9,7 @@ namespace TedEnergy.Web.API.DataObjects.Eec
 {
     public class SystemSettings : DataObject
     {
-        private const string _objName = @"SystemSettings";
+        private const string _objName = @"api/SystemSettings";
         private const string _rootXmlName = @"SystemSettings";
         private const ServiceType serviceType = ServiceType.EEC_POLLING;
 

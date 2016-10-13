@@ -10,7 +10,7 @@ namespace TedEnergy.Web.API.DataObjects.Eec
 {
     public class DashData : DataObject
     {
-        private const string _objName = @"DashData";
+        private const string _objName = @"api/DashData";
         private const string _rootXmlName = @"DashData";
         private const ServiceType serviceType = ServiceType.EEC_POLLING;
 

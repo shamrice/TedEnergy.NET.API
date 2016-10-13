@@ -9,7 +9,7 @@ namespace TedEnergy.Web.API.DataObjects.Eec
 {
     public class SystemOverview : DataObject
     {
-        private const string _objName = @"SystemOverview";
+        private const string _objName = @"api/SystemOverview";
         private const string _rootXmlName = @"DialDataDetail";
         private const ServiceType serviceType = ServiceType.EEC_POLLING;
         private MtuValObject _mtuValObj = new MtuValObject();

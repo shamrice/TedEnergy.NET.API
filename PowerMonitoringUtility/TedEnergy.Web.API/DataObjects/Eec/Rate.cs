@@ -9,7 +9,7 @@ namespace TedEnergy.Web.API.DataObjects.Eec
 {
     public class Rate : DataObject
     {
-        private const string _objName = @"Rate";
+        private const string _objName = @"api/Rate";
         private const string _rootXmlName = @"Rate";
         private const ServiceType serviceType = ServiceType.EEC_POLLING;
 
