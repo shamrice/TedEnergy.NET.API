@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\CsvStringBuilder.cs" />
     <Compile Include="Core\Exporter.cs" />
     <Compile Include="DataExporterServices.cs" />
     <Compile Include="DataExporterServicesConfiguration.cs" />

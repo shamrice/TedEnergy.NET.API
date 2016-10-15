@@ -15,61 +15,36 @@ namespace DataExporter
 {
     public class DataExporterServices
     {
-        private readonly IList<TedEnergyWebApi> webApis;
         private readonly ServicesConfiguration config;
-        private readonly Exporter exporter;
+        private readonly IList<TedEnergyWebApi> webApis;
+        private readonly IList<Exporter> exporters;
 
         public DataExporterServices(ServicesConfiguration configuration)
         {
             this.config = configuration;
             this.webApis = new List<TedEnergyWebApi>();
+            this.exporters = new List<Exporter>();
 
             foreach (ServiceType serviceType in this.config.ConfiguredTypesOfServices)
-                this.webApis.Add(TedEnergyWebApiBuilder.Build(serviceType));
+                webApis.Add(TedEnergyWebApiBuilder.Build(serviceType));
 
-            foreach (TedEnergyWebApi webApi in this.webApis)
-            {
-                if (null != webApi)
-                    webApi.RefreshDataObjectCache();
-                else
-                    throw new NullReferenceException("TedEnergyWebApiBuilder returned a null value attempting to build TedEnergyApi using the " +
-                        "configuration suppled.");
-            }
-
-            this.exporter = new Exporter(config.ExportLocation, this.webApis);
+            foreach (TedEnergyWebApi api in webApis)
+                exporters.Add(new Exporter(config.ExportLocation, api));
         }
 
         public void Export()
         {
-            exporter.ExportToCsv();
+            foreach (Exporter exporter in this.exporters)
+                exporter.ExportToCsv();
         }
 
         public string DebugTests()
         {
             string result = string.Empty;
-
-            var eecApi = webApis.OfType<EccPollingApi>().SingleOrDefault();
-            DashData dashData = eecApi.GetDataObjectCache().OfType<DashData>().SingleOrDefault();
-            Rate rate = eecApi.GetDataObjectCache().OfType<Rate>().SingleOrDefault();
-            SystemOverview sysOverview = eecApi.GetDataObjectCache().OfType<SystemOverview>().SingleOrDefault();
-
-            var tedApi = webApis.OfType<Ted500PollingApi>().SingleOrDefault();
-            Stats tedStats = tedApi.GetDataObjectCache().OfType<Stats>().SingleOrDefault();
-
-            if (null != dashData)
-                result += dashData.ToString();
-
-            if (null != rate)
-                result += rate.ToString();
-
-            if (null != sysOverview)
-                result += sysOverview.ToString();
-
-            if (null != tedStats)
-                result += tedStats.ToString();
-
+            foreach (Exporter exporter in this.exporters)
+                result += exporter.DebugTests();
             return result;
         }
-
+        
     }
 }
