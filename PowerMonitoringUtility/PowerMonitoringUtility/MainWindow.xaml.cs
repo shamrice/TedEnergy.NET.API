@@ -35,12 +35,28 @@ namespace PowerMonitoringUtility
 
             this.exporterServices = new DataExporterServices(config);
 
-            DebugTextBlock.Text = this.exporterServices.DebugTests();
+            //DebugTextBlock.Text = this.exporterServices.DebugTests();
+            
         }
 
         private void ExportButton_Click(object sender, RoutedEventArgs e)
         {
-            exporterServices.Export();
+            if (!DataExporterServices.IsExportRunning)
+            {
+                exporterServices.StartExportSchedule();
+                ExportButton.Content = "STOP";
+                ExportButton.Background = Brushes.Red;
+                DebugTextBlock.Text = "Exporting data from API every \ntwo seconds to output directory.";  
+            }
+            else
+            {
+                DataExporterServices.IsExportRunning = false;
+                ExportButton.Content = "START";
+                ExportButton.Background = Brushes.Green;
+                DebugTextBlock.Text = "Export stopped.";
+            }
+
         }
+
     }
 }

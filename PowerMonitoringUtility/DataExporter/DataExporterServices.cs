@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using TedEnergy.Web.API;
 using TedEnergy.Web.API.DataObjects;
 using TedEnergy.Web.API.DataObjects.Eec;
@@ -18,9 +19,13 @@ namespace DataExporter
         private readonly ServicesConfiguration config;
         private readonly IList<TedEnergyWebApi> webApis;
         private readonly IList<Exporter> exporters;
+        private Timer runTimer;
+
+        public static bool IsExportRunning { get; set; }
 
         public DataExporterServices(ServicesConfiguration configuration)
         {
+            IsExportRunning = false;
             this.config = configuration;
             this.webApis = new List<TedEnergyWebApi>();
             this.exporters = new List<Exporter>();
@@ -30,12 +35,27 @@ namespace DataExporter
 
             foreach (TedEnergyWebApi api in webApis)
                 exporters.Add(new Exporter(config.ExportLocation, api));
+
+            this.runTimer = new Timer();
+            runTimer.Interval = 2000;
+            runTimer.Enabled = true;
+            runTimer.Elapsed += runTimer_Elapsed;
         }
 
-        public void Export()
+        private void runTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            foreach (Exporter exporter in this.exporters)
-                exporter.ExportToCsv();
+            if (IsExportRunning)
+            {
+                foreach (Exporter exporter in this.exporters)
+                    exporter.ExportToCsv();
+            }
+        }
+
+        public void StartExportSchedule()
+        {
+            IsExportRunning = true;
+            runTimer.Start();
+            
         }
 
         public string DebugTests()
@@ -45,6 +65,6 @@ namespace DataExporter
                 result += exporter.DebugTests();
             return result;
         }
-        
+
     }
 }

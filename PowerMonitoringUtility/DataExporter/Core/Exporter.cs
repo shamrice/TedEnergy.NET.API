@@ -58,9 +58,9 @@ namespace DataExporter.Core
                     string endOfFileName = "DashData.csv";
                     bool fileExists = File.Exists(this.fileLocation + "\\" + this.baseFileName + endOfFileName);
                     if (!fileExists)
-                        WriteToFile(endOfFileName, csvBuilder.Build("Now", "TDY", "MTD", "Avg", "Proj", "Voltage", "Phase"));
+                        WriteToFile(endOfFileName, csvBuilder.Build("Date", "Now", "TDY", "MTD", "Avg", "Proj", "Voltage", "Phase"));
 
-                    WriteToFile(endOfFileName, csvBuilder.Build(dashData.Now, dashData.Tdy, dashData.Mtd, dashData.Avg,
+                    WriteToFile(endOfFileName, csvBuilder.Build(DateTime.Now.ToString(), dashData.Now, dashData.Tdy, dashData.Mtd, dashData.Avg,
                         dashData.Proj, dashData.Voltage, dashData.Phase));
                 }
 
@@ -69,11 +69,11 @@ namespace DataExporter.Core
                     string endOfFileName = "Rate.csv";
                     bool fileExists = File.Exists(this.fileLocation + "\\" + this.baseFileName + endOfFileName);
                     if (!fileExists)
-                        WriteToFile(endOfFileName, csvBuilder.Build("Time", "Value", "Tier", "TOU", "MeterReadDate", "DaysLeft",
+                        WriteToFile(endOfFileName, csvBuilder.Build("Date", "Time", "Value", "Tier", "TOU", "MeterReadDate", "DaysLeft",
                             "PlanType", "TOUDesc", "DemandCharge_InUse", "DemandCharge_DemandBase", "DemandCharge_Power",
                             "DemandCharge_Cost"));
 
-                    WriteToFile(endOfFileName, csvBuilder.Build(rate.Time, rate.Value, rate.Tier, rate.Tou, rate.MeterReadDate,
+                    WriteToFile(endOfFileName, csvBuilder.Build(DateTime.Now.ToString(), rate.Time, rate.Value, rate.Tier, rate.Tou, rate.MeterReadDate,
                         rate.DaysLeft, rate.PlanType, rate.TouDescription, rate.DemandCharge.InUse, rate.DemandCharge.DemandBase,
                         rate.DemandCharge.Power, rate.DemandCharge.Cost));
                 }
@@ -84,7 +84,7 @@ namespace DataExporter.Core
                     bool fileExists = File.Exists(this.fileLocation + "\\" + this.baseFileName + endOfFileName);
                     if (!fileExists)
                     {
-                        string header = string.Empty;
+                        string header = "Date,";
                         foreach (var mtu in sysOverview.MtuVal.Mtus)
                         {
                             string mtuPrefix = "MTU" + mtu.MtuNumber + "_";
@@ -96,7 +96,7 @@ namespace DataExporter.Core
                         WriteToFile(endOfFileName, header);
                     }
 
-                    string data = string.Empty;
+                    string data = DateTime.Now.ToString() + ",";
                     foreach (var mtu in sysOverview.MtuVal.Mtus)
                     {
                         string mtuPrefix = "MTU" + mtu.MtuNumber + "_";
