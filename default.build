@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<project name="TedEnergyAPI" default="build-all" basedir=".">
+	<property name="profile" value="default" overwrite="false" />
+	<property name="property.file" value="${profile}.properties" />
+	<include buildfile="${property.file}" if="${file::exists(property.file)}" />
+	
+	<property name="TedEnergyBaseApiUrl" value="http://localhost" overwrite="false" />
+	<property name="FileExportLocation" value="." overwrite="false"/>
+	
+	<property name="build.configuration" value="Debug" overwrite="false" />
+	<property name="build.target" value="Build" overwrite="false" />
+	<property name="dirs.bin" value="bin/${build.configuration}" overwrite="false" />
+	
+	<target name="config" description="Set utility configuration based on values in properties file.">
+		<copy file="ConfigTemplate\App.config.template" tofile="PowerMonitoringUtility\PowerMonitoringUtility\App.config" overwrite="true">
+			<filterchain>
+				<replacetokens>
+					<token key="TedEnergyBaseApiUrl" value="${TedEnergyBaseApiUrl}" />
+					<token key="FileExportLocation" value="${FileExportLocation}" />
+				</replacetokens>
+			</filterchain>
+		</copy>
+	</target>
+	
+	<target name="build-api" description="Build TedEnergery.Web.API">
+		<exec program="MSBuild">
+			<arg line="TedEnergy.API\TedEnergy.API.sln" />
+			<arg line="/property:Configuration=${build.configuration}" />
+			<arg value="/target:${build.target}" />
+			<arg value="/verbosity:normal" />
+			<arg value="/nologo" />
+		</exec>
+	</target>
+
+	<target name="build-dataexporter" description="Build TedEnergery.DataExporter">
+		<exec program="MSBuild">
+			<arg line="TedEnergy.DataExporter\TedEnergy.DataExporter.sln" />
+			<arg line="/property:Configuration=${build.configuration}" />
+			<arg value="/target:${build.target}" />
+			<arg value="/verbosity:normal" />
+			<arg value="/nologo" />
+		</exec>
+	</target>
+
+	<target name="build-app" description="Build TedEnergery Power Monitoring Utility Application">
+		<exec program="MSBuild">
+			<arg line="PowerMonitoringUtility\PowerMonitoringUtility.sln" />
+			<arg line="/property:Configuration=${build.configuration}" />
+			<arg value="/target:${build.target}" />
+			<arg value="/verbosity:normal" />
+			<arg value="/nologo" />
+		</exec>
+	</target>
+
+	
+	<target name="build-all" description="Build all projects">
+		<call target="config" cascade="false" />
+		<call target="build-api" cascade="false" />
+		<call target="build-dataexporter" cascade="false" />
+		<call target="build-app" cascade="false" />
+	</target>
+	
+	<target name="clean" description="clean lib and bin directories">
+		<delete>
+			<fileset basedir="libs">
+				<include name="**/*" />
+			</fileset>
+		</delete>
+		<delete>
+			<fileset basedir="bin">
+				<include name="**/*" />
+			</fileset>
+		</delete>
+	</target>
+</project>
