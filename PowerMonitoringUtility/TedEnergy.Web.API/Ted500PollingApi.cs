@@ -17,8 +17,11 @@ namespace TedEnergy.Web.API
 
         public override void RefreshDataObjectCache()
         {
-            base.dataObjectCache = new List<DataObjects.DataObject>();
-            base.dataObjectCache.Add(new Stats());
+            lock (base.lockObj)
+            {
+                base.dataObjectCache = new List<DataObjects.DataObject>();
+                base.dataObjectCache.Add(new Stats());
+            }
         }
     }
 }
