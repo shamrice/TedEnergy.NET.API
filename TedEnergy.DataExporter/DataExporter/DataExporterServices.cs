@@ -1,4 +1,4 @@
-﻿using DataExporter.Core;
+﻿using TedEnergy.DataExporter.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,7 @@ using TedEnergy.Web.API.DataObjects.Eec;
 using TedEnergy.Web.API.DataObjects.Ted500;
 using TedEnergy.Web.API.WebClients;
 
-namespace DataExporter
+namespace TedEnergy.DataExporter
 {
     public class DataExporterServices
     {

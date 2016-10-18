@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TedEnergy.Web.API;
 using TedEnergy.Web.API.WebClients;
 
-namespace DataExporter
+namespace TedEnergy.DataExporter
 {
     public class DataExporterServicesConfiguration : ServicesConfiguration
     {

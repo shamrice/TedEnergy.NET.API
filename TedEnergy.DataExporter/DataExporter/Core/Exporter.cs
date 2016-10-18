@@ -8,7 +8,7 @@ using TedEnergy.Web.API;
 using TedEnergy.Web.API.DataObjects.Eec;
 using TedEnergy.Web.API.DataObjects.Ted500;
 
-namespace DataExporter.Core
+namespace TedEnergy.DataExporter.Core
 {
     public class Exporter
     {

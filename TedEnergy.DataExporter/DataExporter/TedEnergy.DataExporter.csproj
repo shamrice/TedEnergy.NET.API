@@ -7,8 +7,8 @@
     <ProjectGuid>{56A54486-C2C3-454A-8751-C6E9F979E520}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataExporter</RootNamespace>
-    <AssemblyName>DataExporter</AssemblyName>
+    <RootNamespace>TedEnergy.DataExporter</RootNamespace>
+    <AssemblyName>TedEnergy.DataExporter</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\libs\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -38,6 +38,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TedEnergy.Web.API, Version=0.0.6135.25846, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\TedEnergy.Web.API.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\CsvStringBuilder.cs" />
@@ -46,12 +50,6 @@
     <Compile Include="DataExporterServicesConfiguration.cs" />
     <Compile Include="ServicesConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TedEnergy.Web.API\TedEnergy.Web.API.csproj">
-      <Project>{684e9ed2-a1b8-4eec-8ddc-e8727a795298}</Project>
-      <Name>TedEnergy.Web.API</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,4 @@
-﻿using DataExporter;
+﻿using TedEnergy.DataExporter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +27,10 @@ namespace PowerMonitoringUtility
             InitializeComponent();
 
             ServicesConfiguration config = new DataExporterServicesConfiguration(
-                new List<DataExporter.ServicesConfiguration.TypesOfServices> {
-                    DataExporter.ServicesConfiguration.TypesOfServices.EEC,
-                    DataExporter.ServicesConfiguration.TypesOfServices.MTU,
-                    DataExporter.ServicesConfiguration.TypesOfServices.TED,
+                new List<TedEnergy.DataExporter.ServicesConfiguration.TypesOfServices> {
+                    TedEnergy.DataExporter.ServicesConfiguration.TypesOfServices.EEC,
+                    TedEnergy.DataExporter.ServicesConfiguration.TypesOfServices.MTU,
+                    TedEnergy.DataExporter.ServicesConfiguration.TypesOfServices.TED,
             });
 
             this.exporterServices = new DataExporterServices(config);
