@@ -145,9 +145,9 @@ namespace TedEnergy.Web.API.DataObjects.Eec
 
                 return true;
             }
-            catch
+            catch (Exception exc)
             {
-                return false;
+                throw exc;
             }
         }
 

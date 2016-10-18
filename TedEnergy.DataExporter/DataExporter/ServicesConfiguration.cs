@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TedEnergy.Logger;
 using TedEnergy.Web.API;
 using TedEnergy.Web.API.WebClients;
 
@@ -14,6 +15,7 @@ namespace TedEnergy.DataExporter
         private const string EXPORT_KEY_NAME = "FileExportLocation";
         private readonly string exportLocation;
         protected readonly IList<ServiceType> configuredServiceTypes;
+        protected readonly ILogger logger;
         
         public enum TypesOfServices
         {
@@ -29,7 +31,12 @@ namespace TedEnergy.DataExporter
             get { return this.exportLocation; }
         }
 
-        public ServicesConfiguration(IList<TypesOfServices> typesOfServices)
+        public ILogger Logger
+        {
+            get { return this.logger; }
+        }
+
+        public ServicesConfiguration(IList<TypesOfServices> typesOfServices, ILogger logger)
         {
             this.configuredServiceTypes = new List<ServiceType>();
 
@@ -46,6 +53,8 @@ namespace TedEnergy.DataExporter
             this.exportLocation = ConfigurationManager.AppSettings[EXPORT_KEY_NAME];
             if (string.IsNullOrWhiteSpace(exportLocation))
                 throw new ConfigurationErrorsException("Missing key '" + EXPORT_KEY_NAME + "' for export location configuration.");
+
+            this.logger = logger;
             
         }
 

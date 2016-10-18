@@ -361,9 +361,9 @@ namespace TedEnergy.Web.API.DataObjects.Ted500
 
                 return true;
             }
-            catch
+            catch (Exception exc)
             {
-                return false;
+                throw exc;
             }
 
         }

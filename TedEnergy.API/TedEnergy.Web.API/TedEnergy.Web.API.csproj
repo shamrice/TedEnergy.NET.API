@@ -39,6 +39,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TedEnergy.Logger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\TedEnergy.Logger.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataObjects\Eec\DashData.cs" />

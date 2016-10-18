@@ -70,7 +70,7 @@ namespace TedEnergy.Web.API.DataObjects.Mtu3k
              *
              */
 
-            return false;
+            return true;
         }
 
         public override string ToString()

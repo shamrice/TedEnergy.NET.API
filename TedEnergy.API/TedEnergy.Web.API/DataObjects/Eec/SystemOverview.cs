@@ -194,9 +194,9 @@ namespace TedEnergy.Web.API.DataObjects.Eec
                 _mtuValObj = mtuVal;
                 return true;
             }
-            catch
+            catch (Exception exc)
             {
-                return false;
+                throw exc;
             }
 
         }

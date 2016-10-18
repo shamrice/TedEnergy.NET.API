@@ -22,6 +22,16 @@
 		</copy>
 	</target>
 	
+	<target name="build-logger" description="Build logger">
+		<exec program="MSBuild">
+			<arg line="TedEnergy.Logger\TedEnergy.Logger.sln" />
+			<arg line="/property:Configuration=${build.configuration}" />
+			<arg value="/target:${build.target}" />
+			<arg value="/verbosity:normal" />
+			<arg value="/nologo" />
+		</exec>
+	</target>
+	
 	<target name="build-api" description="Build TedEnergery.Web.API">
 		<exec program="MSBuild">
 			<arg line="TedEnergy.API\TedEnergy.API.sln" />
@@ -55,6 +65,7 @@
 	
 	<target name="build-all" description="Build all projects">
 		<call target="config" cascade="false" />
+		<call target="build-logger" cascade="false" />
 		<call target="build-api" cascade="false" />
 		<call target="build-dataexporter" cascade="false" />
 		<call target="build-app" cascade="false" />

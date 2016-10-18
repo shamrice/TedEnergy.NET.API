@@ -650,9 +650,9 @@ namespace TedEnergy.Web.API.DataObjects.Mtu3k
 
                 return true;
             }
-            catch
+            catch (Exception exc)
             {
-                return false;
+                throw exc;
             }
 
         }

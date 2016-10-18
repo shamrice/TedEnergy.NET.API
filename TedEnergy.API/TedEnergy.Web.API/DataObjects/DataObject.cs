@@ -53,7 +53,7 @@ namespace TedEnergy.Web.API.DataObjects
             rawXml = webClient.GetXmlData();
 
             if (!ParseRawXML())
-                Console.WriteLine("Failure attempting to parse data from web services.");
+                throw new Exception("Failed to parse data object from TED web services.");
         }
 
     }

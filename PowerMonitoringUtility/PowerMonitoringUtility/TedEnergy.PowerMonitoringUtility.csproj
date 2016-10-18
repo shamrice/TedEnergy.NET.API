@@ -47,6 +47,9 @@
     <Reference Include="TedEnergy.DataExporter">
       <HintPath>..\..\libs\TedEnergy.DataExporter.dll</HintPath>
     </Reference>
+    <Reference Include="TedEnergy.Logger">
+      <HintPath>..\..\libs\TedEnergy.Logger.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

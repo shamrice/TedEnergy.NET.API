@@ -68,7 +68,7 @@ namespace TedEnergy.Web.API.DataObjects.Eec
                 return false;
             }
              */
-            return false;
+            return true;
         }
 
         public override string ToString()

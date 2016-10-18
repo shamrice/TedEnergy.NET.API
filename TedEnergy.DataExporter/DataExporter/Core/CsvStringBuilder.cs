@@ -14,9 +14,8 @@ namespace TedEnergy.DataExporter.Core
             for (int i = 0; i < fields.Length; i++)
             {
                 result += fields[i];
-                //if (i != fields.Length - 1)
-                    result += ",";
-            }            
+                result += ",";
+            }
             return result;
         }
     }

@@ -18,7 +18,7 @@ namespace TedEnergy.DataExporter
     {
         private readonly ServicesConfiguration config;
         private readonly IList<TedEnergyWebApi> webApis;
-        private readonly IList<Exporter> exporters;
+        private readonly IList<Exporter> exporters;        
         private Timer runTimer;
 
         public static bool IsExportRunning { get; set; }
@@ -30,29 +30,48 @@ namespace TedEnergy.DataExporter
             this.webApis = new List<TedEnergyWebApi>();
             this.exporters = new List<Exporter>();
 
-            foreach (ServiceType serviceType in this.config.ConfiguredTypesOfServices)
-                webApis.Add(TedEnergyWebApiBuilder.Build(serviceType));
+            try
+            {
+                foreach (ServiceType serviceType in this.config.ConfiguredTypesOfServices)
+                    webApis.Add(TedEnergyWebApiBuilder.Build(serviceType, config.Logger));
 
-            foreach (TedEnergyWebApi api in webApis)
-                exporters.Add(new Exporter(config.ExportLocation, api));
+                foreach (TedEnergyWebApi api in webApis)
+                    exporters.Add(new Exporter(config.ExportLocation, api));
 
-            this.runTimer = new Timer();
-            runTimer.Interval = 2000;
-            runTimer.Enabled = true;
-            runTimer.Elapsed += runTimer_Elapsed;
+                this.runTimer = new Timer();
+                runTimer.Interval = 2000;
+                runTimer.Enabled = true;
+                runTimer.Elapsed += runTimer_Elapsed;
+
+            }
+            catch (Exception exc)
+            {
+                config.Logger.LogException(exc);
+            }
+
         }
 
         private void runTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
+        {            
             if (IsExportRunning)
             {
                 foreach (Exporter exporter in this.exporters)
-                    exporter.ExportToCsv();
+                {
+                    try
+                    {
+                        exporter.ExportToCsv();
+                    }
+                    catch (Exception exc)
+                    {
+                        config.Logger.LogException(exc);
+                    }                    
+                }
             }
         }
 
         public void StartExportSchedule()
         {
+            config.Logger.LogDebug("Export schedule started.");
             IsExportRunning = true;
             runTimer.Start();
             

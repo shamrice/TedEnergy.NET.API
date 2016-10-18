@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TedEnergy.Logger.Loggers;
+
 
 namespace PowerMonitoringUtility
 {
@@ -27,11 +29,13 @@ namespace PowerMonitoringUtility
             InitializeComponent();
 
             ServicesConfiguration config = new DataExporterServicesConfiguration(
-                new List<TedEnergy.DataExporter.ServicesConfiguration.TypesOfServices> {
-                    TedEnergy.DataExporter.ServicesConfiguration.TypesOfServices.EEC,
-                    TedEnergy.DataExporter.ServicesConfiguration.TypesOfServices.MTU,
-                    TedEnergy.DataExporter.ServicesConfiguration.TypesOfServices.TED,
-            });
+                new List<ServicesConfiguration.TypesOfServices> {
+                    ServicesConfiguration.TypesOfServices.EEC,
+                    ServicesConfiguration.TypesOfServices.MTU,
+                    ServicesConfiguration.TypesOfServices.TED,},
+                new TextFileLogger()
+            
+            );
 
             this.exporterServices = new DataExporterServices(config);
 
